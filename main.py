@@ -7,9 +7,15 @@ from reports import select_reporter_by_name
 
 
 def main():
-    parser = argparse.ArgumentParser(description="CLI для генерации таблички в терминале.")
-    parser.add_argument("--files", nargs="+", required=True, help="Список CSV-файлов")
-    parser.add_argument("--report", required=True, help="Имя отчёта из reports (без .py)")
+    parser = argparse.ArgumentParser(
+        description="CLI для генерации таблички в терминале."
+    )
+    parser.add_argument(
+        "--files", nargs="+", required=True, help="Список CSV-файлов"
+    )
+    parser.add_argument(
+        "--report", required=True, help="Имя отчёта из reports (без .py)"
+    )
 
     args = parser.parse_args()
 

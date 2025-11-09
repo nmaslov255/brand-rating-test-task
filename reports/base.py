@@ -15,7 +15,7 @@ class BaseReport:
     def __init__(self, table: List[tuple]):
         if not self.__report_schema__:
             raise ValidationError(
-                f"Необходимо задать схему данных для репорта в {self.__name__}!"
+                f"Необходимо задать схему данных для репорта в {self.__name__}"
             )
         self.table = self._apply_schema(table)
 
@@ -27,7 +27,8 @@ class BaseReport:
         head, *body = table
         if head != header_schema:
             raise ValidationError(
-                f"Заголовки репорта не совпадают. Получено: {head}, ожидается: {header_schema}"
+                "Заголовки репорта не совпадают. "
+                f"Получено: {head}, ожидается: {header_schema}"
             )
 
         normalized_body = [

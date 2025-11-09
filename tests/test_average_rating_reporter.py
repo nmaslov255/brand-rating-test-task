@@ -1,5 +1,3 @@
-import pytest
-
 from reports.average_rating import Report as AverageRatingReport
 
 

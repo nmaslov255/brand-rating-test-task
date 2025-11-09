@@ -23,7 +23,9 @@ def merge_csv(file_paths: list) -> list[tuple]:
                 header = current_header
                 merged.append(header)
             elif header != current_header:
-                raise ValidationError(f'В переданных файлах различаются заголовки: "{file_paths}"')
+                raise ValidationError(
+                    f'В csv файлах различаются заголовки: "{file_paths}"'
+                )
 
             merged.extend(tuple(row) for row in reader)
 

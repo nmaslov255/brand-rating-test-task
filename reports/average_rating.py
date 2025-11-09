@@ -1,8 +1,9 @@
-from reports.base import BaseReport
+from reports import BaseReport
+
 
 class AverageRatingReport(BaseReport):
     __name__ = 'average_rating_report'
-    __report_schema__ =  [
+    __report_schema__ = [
         ("name", str),
         ("brand", str),
         ("price", int),
@@ -24,6 +25,7 @@ class AverageRatingReport(BaseReport):
             rating = sum(votes) / len(votes)
             average_brand_rating.append((idx+1, brand, rating,))
         return average_brand_rating
+
 
 Report = AverageRatingReport
 __all__ = ['Report']
