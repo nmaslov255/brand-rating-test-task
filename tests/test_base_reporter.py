@@ -32,10 +32,10 @@ def test_base_report_invalid_header():
         DummyReport(table)
 
 
-def test_base_report_missing_schema():
-    class NoSchemaReport(BaseReport):
+def test_base_report_invalid_schema():
+    class InvalidSchemaReport(BaseReport):
         pass
 
     table = [("a", "b"), ("1", "2")]
     with pytest.raises(ValidationError):
-        NoSchemaReport(table)
+        InvalidSchemaReport(table)

@@ -2,10 +2,8 @@ import os
 import importlib.util
 
 
-def select_reporter_by_name(report_name: str):
-    """
-    Загружает класс Report из модуля reports/{report_name}.py
-    """
+def select_report_by_name(report_name: str):
+    """Загружает класс Report из модуля reports/{report_name}.py"""
     report_name = report_name.replace('-', '_')
 
     path = os.path.join("reports", f"{report_name}.py")

@@ -10,11 +10,11 @@ def test_average_rating_report_build():
     ]
 
     report = AverageRatingReport(table)
-    result = report.build()
+    report_table = report.calculate()
 
     # Проверяем, что заголовок верный
-    assert result[0] == ("", "brand", "rating")
+    assert report_table[0] == ("", "brand", "rating")
     # Проверяем правильность средних значений
-    brand_ratings = {row[1]: row[2] for row in result[1:]}
+    brand_ratings = {record[1]: record[2] for record in report_table[1:]}
     assert brand_ratings["BrandA"] == 4.5  # (4+5)/2
     assert brand_ratings["BrandB"] == 3.0

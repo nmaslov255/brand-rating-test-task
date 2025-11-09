@@ -1,3 +1,4 @@
+"""Репорт среднего рейтинга брендов."""
 from reports import BaseReport
 
 
@@ -10,7 +11,12 @@ class AverageRatingReport(BaseReport):
         ("rating", float)
     ]
 
-    def build(self) -> list[tuple]:
+    def calculate(self) -> list[tuple]:
+        """Группируем табличку по брендам, считаем среднее значение рейтинга.
+
+        Возвращает табличку с заголовками: ['', 'brand', 'rating'], где
+        пустая колонка обозначает номер бренда.
+        """
         brand_ratings: dict[str, list] = {}
         for name, brand, price, rating in self.table[1:]:
             try:

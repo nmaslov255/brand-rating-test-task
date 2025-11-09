@@ -1,18 +1,29 @@
-# Модуль с базовым классом репортов.
+"""Базовые сущности для работы с репортами."""
 from typing import List, Tuple, Type
 
 from exceptions import ValidationError
 
 
 class BaseReport:
-    """
-    Базовый класс для репортов.
-    Приводит ячейки таблицы к типам, заданным в __report_schema__.
+    """Базовый класс для создания репортов.
+
+    Парсит табличку, используя схему данных из `self.__report_schema__`,
+    хранит результат парсинга в `self.table`.
+
+    Классы-наследники могут прописать свою схему таблицы.
+    Логика репортов добавляется через перезагрузку метода `self.calculate`.
     """
     __name__: str = "base_report"
     __report_schema__: List[Tuple[str, Type]] = None
 
     def __init__(self, table: List[tuple]):
+        """Перед иницилизацией обязательно задаем схему рабочей таблицы.
+
+        Формат схемы - список кортежей, где первое значение - имя колонки, а
+        второе - функция приведения типа, пример:
+
+        `__report_schema__ = [('name': str), ('price', int), ...]`
+        """
         if not self.__report_schema__:
             raise ValidationError(
                 f"Необходимо задать схему данных для репорта в {self.__name__}"
@@ -37,3 +48,13 @@ class BaseReport:
         ]
 
         return [head, *normalized_body]
+
+    def calculate(self) -> List[tuple]:
+        """Функция, внутри которой задается бизнес-логика репорта.
+
+        Репорт высчитывается на основании данных в `self.table`.
+        Метод должен возвращать новую табличку с результатами репорта.
+        """
+        raise NotImplementedError(
+            f"В {self.__name__} не определен метод calculate"
+        )

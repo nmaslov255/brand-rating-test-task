@@ -1,9 +1,30 @@
-#!/usr/bin/env python3
+"""
+Выдержка из Тестового задания:
+
+
+```
+Скрипт читает файлы с данными о рейтингах товаров и формирует отчеты.
+
+Отчёт включает в себя список брендов и средний рейтинг бренда, бренды
+сортируются по рейтингу.
+
+Название файлов (может быть несколько) и название отчета передается
+в виде параметров --files и --report.
+
+Отчёт формируется по всем переданных файлам, а не по каждому отдельно.
+```
+
+FAQ:
+    - Для объединения csv файлов в таблицу дергаем `helpers.merge_csv`.
+    - Для добавления нового репорта создаем модуль в `reports/{report_name}.py`
+    - Для каждого репорта нужно задать схему таблицы входных данных.
+    - Стандарт кодирования pep8, в качестве линтера flake8.
+"""
 import argparse
 from tabulate import tabulate
 
 from helpers import merge_csv
-from reports import select_reporter_by_name
+from reports import select_report_by_name
 
 
 def main():
@@ -19,12 +40,12 @@ def main():
 
     args = parser.parse_args()
 
-    # Загружаем класс репорта и объединяем CSV
-    Reporter = select_reporter_by_name(args.report)
+    # Загружаем класс репорта и объединяем CSV в одну табличку
+    Report = select_report_by_name(args.report)
     table: list[tuple] = merge_csv(args.files)
 
     # Генерируем отчёт и выводим
-    report_table: list[tuple] = Reporter(table).build()
+    report_table: list[tuple] = Report(table).calculate()
     print(tabulate(report_table, headers="firstrow"))
 
 
