@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 ### 3. Запуск программы
 ```Bash
-python main.py --files example/products1.csv example/products2.csv --report average-rating
+python main.py --files examples/products1.csv examples/products2.csv --report average-rating
 ```
 
 Где:
@@ -30,7 +30,7 @@ python main.py --files example/products1.csv example/products2.csv --report aver
 --report указывает модуль репорта в директории reports/
 
 #### Пример входных CSV файлов
-Файлы c примерами лежат в example/products1.csv и example/products2.csv
+Файлы c примерами лежат в examples/products1.csv и examples/products2.csv
 
 ```csv
 name,brand,price,rating
