@@ -1,1 +1,1 @@
-from .base import select_reporter_by_name
+from reports.utils import select_reporter_by_name
