@@ -1,4 +1,6 @@
 env/*
 files/*
 __pycache__/
+.mypy_cache
+.pytest_cache
 .DS_store
