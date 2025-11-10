@@ -66,11 +66,11 @@ class TopRatingReport(BaseReport):
     def calculate(self) -> list[tuple]:
         """Возвращает табличку с самым высоко оцененным брендом."""
         top_brand, top_rating = None, None
-        for brand, rating in self.table[1:]:
+        for _, brand, _, rating in self.table[1:]:
             if not top_brand:
-                top_brand, top_rating = record
+                top_brand, top_rating = brand, rating
             elif rating > top_rating:
-                top_brand, top_rating = record
+                top_brand, top_rating = brand, rating
         return [('top_brand', 'top_rating'), (top_brand, top_rating)]
 ```
 
@@ -83,7 +83,7 @@ __all__ = ["Report"]
 
 Теперь `top-rating-report` репорт можно запустить:
 ```Bash
-python main.py --files example/products1.csv example/products2.csv --report top-rating-report
+python main.py --files examples/products1.csv examples/products2.csv --report top-rating-report
 ```
 
 ## Тестирование
