@@ -69,7 +69,7 @@ class TopRatingReport(BaseReport):
         for _, brand, _, rating in self.table[1:]:
             if not top_brand:
                 top_brand, top_rating = brand, rating
-            elif rating > top_rating:
+            elif float(rating) > float(top_rating):
                 top_brand, top_rating = brand, rating
         return [('top_brand', 'top_rating'), (top_brand, top_rating)]
 ```
